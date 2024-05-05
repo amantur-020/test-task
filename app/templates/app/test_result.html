@@ -1,0 +1,28 @@
+{% extends 'app/base.html' %}
+
+{% block title %}Результаты теста{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center mt-5">
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-header bg-primary text-white">
+        <h2 class="text-center">Результаты теста</h2>
+      </div>
+      <div class="card-body">
+        <p><strong>Пользователь:</strong> {{ test_result.user }}</p>
+        <p><strong>Набор тестов:</strong> {{ test_result.test }}</p>
+        <p><strong>Количество правильных ответов:</strong> {{ test_result.correct_answers }}</p>
+        <p><strong>Общее количество вопросов:</strong> {{ test_result.total_questions }}</p>
+        <p><strong>Процент правильных ответов:</strong> {{ test_result.percent_answers }}%</p>
+        <div class="text-center">
+          <form action="{% url 'tests' %}" method="get">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-danger">Выйти</button>
+          </form>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

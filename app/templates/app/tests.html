@@ -1,0 +1,29 @@
+{% extends 'app/base.html' %}
+
+{% block title %}Список тестов{% endblock %}
+{% block content %}
+<div class="container">
+  <div class="row justify-content-center mt-5">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header bg-primary text-white">
+          <h2 class="text-center">Список тестов</h2>
+        </div>
+        <div class="card-body">
+          {% if tests %}
+          <ul class="list-group">
+            {% for test in tests %}
+            <li>
+              <a href="{% url 'questions' test.question_set.first.id %}" class="btn btn-primary btn-lg btn-block btn-lg mb-3">{{ test.title }}</a>
+            </li>
+            {% endfor %}
+          </ul>
+          {% else %}
+          <p>Нет доступных тестов.</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

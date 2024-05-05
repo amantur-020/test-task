@@ -1,0 +1,22 @@
+{% extends 'app/base.html' %}
+
+{% block title %}Мой сайт{% endblock %}
+{% block content %}
+<body>
+    <div class="container">
+        <div class="row justify-content-center mt-5">
+            <div class="col-md-6">
+                <div class="card card-custom">
+                    <div class="card-header bg-primary text-white">
+                        <h2 class="text-center">Добро пожаловать!</h2>
+                    </div>
+                    <div class="card-body">
+                        <a href="{% url 'register' %}" class="btn btn-custom btn-primary-custom btn-block">Регистрация</a>
+                        <a href="{% url 'login' %}" class="btn btn-custom btn-secondary-custom btn-block">Вход</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+{% endblock %}
