@@ -37,7 +37,7 @@ class Answer(models.Model):
             if not Answer.objects.filter(question=self.question, is_correct=True).exists():
                 raise ValidationError("Хотя бы один ответ должен быть правильным")
 
-            if self.is_correct and Answer.objects.filter(question=self.question, is_correct=True).count() > 0:
+            if self.is_correct and Answer.objects.filter(question=self.question, is_correct=True).count() > 1:
                 raise ValidationError("Нельзя отметить все ответы как правильные")
 
     def __str__(self) -> str:
