@@ -46,6 +46,11 @@ class QuestionDetailView(LoginRequiredMixin, DetailView):
     context_object_name = 'question'
     login_url = '/login/'
 
+    def get_queryset(self):
+        current_user = self.request.user
+        TestResult.objects.filter(user=current_user).delete()
+        return super().get_queryset()
+
 
     def post(self, request, *args, **kwargs):
         answer_id = request.POST.get('answer')
@@ -53,7 +58,7 @@ class QuestionDetailView(LoginRequiredMixin, DetailView):
         answer = Answer.objects.get(id=answer_id) 
         user = request.user
         test = self.get_object().test 
-        test_result, created = TestResult.objects.get_or_create(user=user, test=test)
+        test_result, correct = TestResult.objects.get_or_create(user=user, test=test)
         if answer.is_correct:
             test_result.correct_answers += 1
         test_result.total_questions += 1
